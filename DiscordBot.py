@@ -23,6 +23,12 @@ async def on_message(message):
 async def ping(ctx):
     await ctx.send(f'Ping! {round(client.latency * 1000)}ms')
 
+@client.command()
+@commands.has_permissions(administrator=True)
+async def assignrole(ctx, target: discord.Member, role: discord.Role):
+
+    await target.add_roles(role)
+    await ctx.send (f'Hey {ctx.author}, {target.name} has been given the role {role.name}')
 
 
 client.run(config['token'])
